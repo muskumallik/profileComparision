@@ -1,0 +1,74 @@
+<apex:page controller="cc" sidebar="false" showHeader="false" action="{!profdownld}"  contentType="application/vnd.ms-excel#{!profilename}.xls">
+  <head>
+        <style>
+            table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            }
+            .green{ background-color: green;}
+            .red{ background-color: red;}
+            td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #BFBFBF;
+            border-right: 1px solid #ddd;
+            width : 100px;
+            }
+            
+            th {
+            border-right: 1px solid #BFBFBF;
+            text-align: center;
+            padding: 8px;
+            background-color: #c2c2a3;
+            width : 100px;
+            }
+            
+            .textcls{
+            text-align:right;
+            }
+            .hidden { display: none; }
+        </style>
+    </head>
+    <apex:form >
+   
+    <body>
+       
+        <div >
+            <apex:outputPanel id="ss">
+            <table >
+            <tr>
+            <th>
+            </th>
+             <th colspan="6">{!profilename}
+            </th>
+            </tr>
+                <tr >
+                    <th >Object</th>
+                    <th>Read</th> 
+                    <th>Create</th> 
+                    <th>Delete</th> 
+                    <th>Edit</th> 
+                    <th>ViewAll</th> 
+                    <th>ModifyAll</th> 
+                     
+                                    </tr>
+            <apex:repeat value="{!mcomp1}" var="m">
+                  
+                       <tr> <td> {!m}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsRead, 'green', 'red')}">{!mcomp1 [m].PermissionsRead} </td>
+                        <td class="{!IF(mcomp1 [m].PermissionsCreate,'green', 'red')}">{!mcomp1[m].PermissionsCreate}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsDelete, 'green', 'red')}">{!mcomp1 [m].PermissionsDelete}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsEdit, 'green', 'red')}"> {!mcomp1 [m].PermissionsEdit}</td>
+                        <td class="{!IF(mcomp1[m].PermissionsViewAllRecords,'green', 'red')}"> {!mcomp1 [m].PermissionsViewAllRecords}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsModifyAllRecords, 'green', 'red')}"> {!mcomp1 [m].PermissionsModifyAllRecords} </td> 
+                      
+                        
+                           </tr>
+                           </apex:repeat>
+              <br/>
+            </table>
+                </apex:outputPanel>
+        </div>            
+    </body>
+    </apex:form>
+</apex:page>
