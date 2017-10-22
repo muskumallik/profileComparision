@@ -1,0 +1,178 @@
+<apex:page controller="cc" showHeader="false" sidebar="false">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+       // $("#o2").hide();
+       //  $("#o1").show();
+   
+});
+</script>
+       
+    
+        <style>
+            table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            }
+            .green{ background-color: green;}
+            .red{ background-color: red;}
+            td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #BFBFBF;
+            border-right: 1px solid #ddd;
+            width : 100px;
+            }
+            
+            th {
+            border-right: 1px solid #BFBFBF;
+            text-align: center;
+            padding: 8px;
+            background-color: #c2c2a3;
+            width : 100px;
+            }
+            
+            .textcls{
+            text-align:right;
+            }
+            .hidden { display: none; }
+        </style>
+    </head>
+    <apex:form >
+    <body >
+    
+       <!-- <apex:selectList size="6" id="intext1"  value="{!leftOptions}"  style="width:177px;" multiselect="true">
+                    <apex:selectOptions value="{!Items1}"/>
+                </apex:selectList>
+        <apex:commandButton value="Select" action="{!retm}" reRender="intext1"/>
+        <apex:commandButton value="Remove"/>
+        <apex:selectList size="6" value="{!rightOptions}" style="width:177px;" multiselect="true">
+                    <apex:selectOptions value="{!Items2}"/>
+                </apex:selectList>-->
+                <div id="o1">
+        <div style="padding-left:20px;margin-top:15px;">
+            Select the Profile to Compare &nbsp;
+            <apex:selectList size="1"  value="{!s1}"   style="width:177px;" >
+                    <apex:selectOptions value="{!Items}"/>
+                </apex:selectList>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <apex:selectList size="1"  value="{!s2}"   style="width:177px;" >
+                    <apex:selectOptions value="{!Items}"/>
+                </apex:selectList> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <apex:commandButton value="Select" action="{!retm}" reRender="ss"/>
+            <apex:commandButton value="Download Each Profile" style="float:right;color:Blue;" onclick="myFunction('false');" rerender="o1,o2"/>
+
+        </div>
+        <!--
+        <div >
+            <table style="width:100%">
+                <tr >
+                    <th >Object</th>
+                    <th>Read</th> 
+                    <th>Create</th> 
+                    <th>Delete</th> 
+                    <th>Edit</th> 
+                    <th>ViewAll</th> 
+                    <th>ModifyAll</th> 
+                </tr>
+                <tr>
+                    <apex:repeat value="{!obmap[s1]}" var="m">
+                        <th> {!m}</th>
+                        <th>{!obmap[s1][m].PermissionsRead} </th>
+                        <th>{!obmap[s1][m].PermissionsCreate}</th>
+                        <th>{!obmap[s1][m].PermissionsDelete}</th>
+                        <th> {!obmap[s1][m].PermissionsEdit}</th>
+                        <th> {!obmap[s1][m].PermissionsViewAllRecords}</th>
+                        <th> {!obmap[s1][m].PermissionsModifyAllRecords} </th>          
+                    </apex:repeat>
+                </tr>
+            </table>
+        </div>-->
+            <apex:outputPanel id="ss">
+            <table >
+            <tr>
+                <th></th>
+                <th colspan="6">{!s1}</th>
+                <th></th>
+                <th colspan="6">{!s2}</th>
+                <th></th>
+                <th colspan="6">Compare</th>
+                
+            </tr>
+                <tr >
+                    <th >Object</th>
+                    <th>Read</th> 
+                    <th>Create</th> 
+                    <th>Delete</th> 
+                    <th>Edit</th> 
+                    <th>ViewAll</th> 
+                    <th>ModifyAll</th> 
+                    <th></th>
+                    <th>Read</th> 
+                    <th>Create</th> 
+                    <th>Delete</th> 
+                    <th>Edit</th> 
+                    <th>ViewAll</th> 
+                    <th>ModifyAll</th>  
+                    <th></th>
+                    <th>Read</th> 
+                    <th>Create</th> 
+                    <th>Delete</th> 
+                    <th>Edit</th> 
+                    <th>ViewAll</th> 
+                    <th>ModifyAll</th> 
+                </tr>
+            <apex:repeat value="{!mcom }" var="m">
+                  
+                       <tr> <td> {!m}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsRead, 'green', 'red')}">{!mcomp1 [m].PermissionsRead} </td>
+                        <td class="{!IF(mcomp1 [m].PermissionsCreate,'green', 'red')}">{!mcomp1[m].PermissionsCreate}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsDelete, 'green', 'red')}">{!mcomp1 [m].PermissionsDelete}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsEdit, 'green', 'red')}"> {!mcomp1 [m].PermissionsEdit}</td>
+                        <td class="{!IF(mcomp1[m].PermissionsViewAllRecords,'green', 'red')}"> {!mcomp1 [m].PermissionsViewAllRecords}</td>
+                        <td class="{!IF(mcomp1 [m].PermissionsModifyAllRecords, 'green', 'red')}"> {!mcomp1 [m].PermissionsModifyAllRecords} </td> 
+                        <td></td>                       
+                         <td class="{!IF(mcomp2 [m].PermissionsRead, 'green', 'red')}">{!mcomp2 [m].PermissionsRead} </td>
+                        <td class="{!IF(mcomp2[m].PermissionsCreate,'green', 'red')}">{!mcomp2[m].PermissionsCreate}</td>
+                        <td class="{!IF(mcomp2[m].PermissionsDelete, 'green', 'red')}">{!mcomp2 [m].PermissionsDelete}</td>
+                        <td class="{!IF(mcomp2 [m].PermissionsEdit, 'green', 'red')}"> {!mcomp2 [m].PermissionsEdit}</td>
+                        <td class="{!IF(mcomp2[m].PermissionsViewAllRecords,'green', 'red')}"> {!mcomp2 [m].PermissionsViewAllRecords}</td>
+                        <td class="{!IF(mcomp2 [m].PermissionsModifyAllRecords, 'green', 'red')}"> {!mcomp2 [m].PermissionsModifyAllRecords} </td> 
+                        <td></td>
+                        
+                        <td class="{!IF(mcom [m].PermissionsRead, 'green', 'red')}">{!mcom [m].PermissionsRead} </td>
+                        <td class="{!IF(mcom [m].PermissionsCreate,'green', 'red')}">{!mcom[m].PermissionsCreate}</td>
+                        <td class="{!IF(mcom [m].PermissionsDelete, 'green', 'red')}">{!mcom [m].PermissionsDelete}</td>
+                        <td class="{!IF(mcom [m].PermissionsEdit, 'green', 'red')}"> {!mcom [m].PermissionsEdit}</td>
+                        <td class="{!IF(mcom [m].PermissionsViewAllRecords,'green', 'red')}"> {!mcom [m].PermissionsViewAllRecords}</td>
+                        <td class="{!IF(mcom [m].PermissionsModifyAllRecords, 'green', 'red')}"> {!mcom [m].PermissionsModifyAllRecords} </td> 
+              
+                           </tr>
+                           </apex:repeat>
+             <br/>
+            </table>
+                </apex:outputPanel>
+                </div>
+                <script>
+                    function myFunction(k){
+                        var x = k;
+                        if(x == 'true'){
+                            $("#o1").show();
+                            $("#o2").hide();
+                        }else{
+                            $("#o1").hide();
+                            $("#o2").show();
+                        }
+                           
+                    }
+                </script>
+        <div id="o2" style="padding-left:20px;margin-top:15px;display:none;">
+        <apex:commandButton value="Back" style="float:right;color:Blue;" onclick="myFunction('true');" rerender="o1,o2"/>
+        <apex:repeat value="{!Items}" var="s">
+       Download {!s.value} Profile in ExcelSheet&nbsp;&nbsp;&nbsp; <apex:outputLink value="/apex/profdownload?id={!s.value}">{!s.value}</apex:outputLink><br/><br/>
+       
+        </apex:repeat>
+          </div>
+    </body>
+    </apex:form>
+</apex:page>
