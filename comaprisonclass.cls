@@ -112,7 +112,7 @@ public void add(){
         
         Map<String,comparepf> mmpf = new  Map<String,comparepf>();
         for(ObjectPermissions o: oP){
-            //SobjectList.add(o.SObjectType);
+            SobjectList.add(o.SObjectType);
             comparepf zcom = new comparepf();
             zcom.PermissionsRead = o.PermissionsRead;
             zcom.PermissionsCreate = o.PermissionsCreate;
@@ -120,8 +120,8 @@ public void add(){
             zcom.PermissionsEdit = o.PermissionsEdit;
             zcom.PermissionsViewAllRecords = o.PermissionsViewAllRecords;
             zcom.PermissionsModifyAllRecords = o.PermissionsModifyAllRecords;
-            String recordTypeId = Schema.getGlobalDescribe().get(o.sobjecttype).getDescribe().getlabel();
-            SobjectList.add(Schema.getGlobalDescribe().get(o.sobjecttype).getDescribe().getlabel());
+            //String recordTypeId = Schema.getGlobalDescribe().get(o.sobjecttype).getDescribe().getlabel();
+           // SobjectList.add(Schema.getGlobalDescribe().get(o.sobjecttype).getDescribe().getlabel());
             mmpf.put(recordTypeId,zcom);
         }
         for(String s11: sObjectList){
