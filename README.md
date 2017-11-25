@@ -1,2 +1,2 @@
 # profileComparision
-Basically Compares  Profile in Salesforce and Downloads Each profile in Excel sheet
+ Compares  Object CRUD Permission For Each Profile in Salesforce  and Downloads Each profile in Excel sheet
