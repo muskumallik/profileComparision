@@ -13,7 +13,7 @@ public class cc {
             }
             return options;
         }else{
-           // leftOptions.addAll(sObjectList);
+           // leftOptions.addAll(sObjectList);asfadfasdgasf
             List<SelectOption> options = new List<SelectOption>();
             for(String s: sObjectList){
                 options.add(new SelectOption(s,s));
