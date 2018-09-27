@@ -1,4 +1,4 @@
-public class cc {
+public class cc {/**/
     public String statusOptions { get; set; }
     public Set<String> leftOptions { get; set; }
     public Set<String> rightOptions { get; set; }
